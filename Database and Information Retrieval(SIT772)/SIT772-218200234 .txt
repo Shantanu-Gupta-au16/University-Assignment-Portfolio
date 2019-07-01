@@ -1,0 +1,291 @@
+Name:Shantanu Gupta
+Student ID:218200234
+-----------------------------------
+Question 1:
+Exercise 3:
+create table Artist(
+name char(25) not null,
+address varchar(25) not null,
+contact int not null,
+artist_id int not null,
+primary key(artist_id)));
+
+desc artist;
+
+create table Art(
+art_barcode int not null,
+title varchar(25) not null,
+description varchar(25) not null,
+primary key(art_barcode));
+
+desc art;
+
+create table customer(
+name char not null,
+address varchar(25) not null,
+contact int not null,
+C_Barcode_ID int not null,
+primary key(C_Barcode_ID));
+
+desc customer;
+
+
+create table vote(
+art_barcode int not null,
+C_Barcode_ID int not null,
+Vote_ID int not null,
+primary key(Vote_ID),
+foreign key(art_barcode) references art(art_barcode),
+foreign key(C_Barcode_ID) references customer(c_Barcode_id));
+
+desc vote;
+--------------------------------------------------------------
+Question 2:
+Exercise 1:
+
+create table Student1
+(Student_ID int not null,
+Student_Fname char(25) not null,
+Student_Lname char(25) not null,
+primary key(Student_ID));
+
+desc Student1;
+
+insert into Student1 values(&Student_ID,'&Student_Fname','&Student_Lname');
+
+Enter value for student_id:10001
+Enter value for student_Fname:John
+Enter value for student_Lname:Smith
+
+SQL>/
+
+Enter value for student_id:10002
+Enter value for student_Fname:Dave
+Enter value for student_Lname:Franklin
+
+SQL>/
+
+Enter value for student_id:10003
+Enter value for student_Fname:Febby
+Enter value for student_Lname:Johns
+
+SQL>/
+
+Enter value for student_id:10004
+Enter value for student_Fname:Mary
+Enter value for student_Lname:Gibson
+
+SQL>/
+
+Enter value for student_id:10005
+Enter value for student_Fname:Glory
+Enter value for student_Lname:Anson
+
+SQL>Select Student_ID,Student_Fname,Student_Lname from student1;
+
+
+create table Student2(
+Student_ID int not null,
+Course_ID varchar(10) not null,
+Year_Joined int not null,
+foreign key(Student_ID)references Student1(Student_ID),
+foreign key(Course_ID)references Course(Course_ID));
+
+desc Student2;
+
+insert into Student2 values(&Student_ID,'&Course_ID',&Year_Joined);
+
+Enter value for student_id:10001
+Enter value for course_id:SIT772
+Enter value for Year_joined:2016
+
+SQL>/
+
+Enter value for student_id:10002
+Enter value for course_id:SIT774
+Enter value for Year_joined:2015
+
+SQL>/
+
+Enter value for student_id:10003
+Enter value for course_id:SIT775
+Enter value for Year_joined:2017
+
+SQL>/
+
+Enter value for student_id:10004
+Enter value for course_id:SIT712
+Enter value for Year_joined:2016
+
+SQL>/
+
+Enter value for student_id:10005
+Enter value for course_id:SIT772
+Enter value for Year_joined:2017
+
+select Student_ID,Course_ID,Year_Joined from student2;
+
+
+create table course
+(Course_ID varchar(25)not null,
+Course char(25),
+Location char(25),
+primary key(Course_ID)));
+
+desc course;
+
+SQL>insert into Course values('&Course_ID','&Course','&Location')
+
+SQL>/
+
+Enter value for course_id:SIT712
+Enter value for course:Database
+Enter value for location:Burwood
+
+SQL>/
+
+Enter value for course_id:SIT774
+Enter value for course:IT Security
+Enter value for location:Burwood
+
+SQL>/
+
+Enter value for course_id:SIT775
+Enter value for course:Software Development
+Enter value for location:Geelong
+
+SQL>/
+
+Enter value for course_id:SIT712
+Enter value for course:Project Management
+Enter value for location:Burwood
+
+Select Course_ID,Course,Location from Course;
+
+----------------------------------------
+Question 2:
+Exercise 2:
+
+select a.student_ID,Student_FName,Student_Lname
+from student1 a
+inner join Student2 b on a.Student_ID=b.Student_ID
+where Year_Joined>='2016';
+---------------------------------
+Question 2:
+Exercise 3:
+
+select*from student1 where 
+Student_FName like'%a%'
+or
+Student_Lname like'%a%';
+-------------------------------
+Question 2:
+Exercise 4:
+select a.Student_ID,Student_FName,Student_Lname
+from Student1 a
+inner join Student2 b on a.student_id=b.student_id
+inner join Course c on b.course_id=c.course_id
+where location='Burwood';
+--------------------------------------
+Question 2:
+Exercise 5:
+Select a.student_id,Student_Fname,Student_Lname
+from student1 a
+inner join student2 b on a.student_id=b.student_id
+inner join course c on b.course_id=c.course_id
+where course='Database'
+or 
+location='Geelong';
+-----------------------------------
+Question 3:
+Exercise 2:
+
+create table Pet_Information(
+PET_ID int not null,
+PET_NAME char(10) not null,
+PET_TYPE char(10) not null,
+PET_AGE int not null,
+OWNER char(25)not null,
+primary key(PET_ID));
+
+desc Pet_information;
+
+insert into Pet_Information values(&PET_ID,'&PET_NAME','&PET_TYPE','&PET_AGE','&OWNER');
+Enter value for pet_id:246
+Enter value for pet_name:ROVER
+Enter value for pet_type:DOG
+Enter value for pet_age:12
+Enter value for owner: SAM COOK
+
+SQL>/
+
+Enter value for pet_id:298
+Enter value for pet_name:SPOT
+Enter value for pet_type:DOG
+Enter value for pet_age:2
+Enter value for owner: TERRY KIM
+
+SQL>/
+
+Enter value for pet_id:341
+Enter value for pet_name:MORRIS
+Enter value for pet_type:CAT
+Enter value for pet_age:4
+Enter value for owner: SAM COOK
+
+SQL>/
+
+Enter value for pet_id:519
+Enter value for pet_name:TWEEDY
+Enter value for pet_type:BIRD
+Enter value for pet_age:2
+Enter value for owner: TERRY KIM
+
+
+SELECT PET_ID,PET_NAME,PET_TYPE,PET_AGE,OWNER FROM PET_INFORMATION;
+
+
+create table Procedure_Information(
+PROC_ID int not null,
+PROCEDURE char(20) not null,
+primary key(Proc_ID));
+
+desc procedure_information;
+
+insert into Procedure_Information values(&PROC_ID,'&Procedure');
+Enter value for proc_id:1
+Enter value for procedure:RABIES VACCINATION
+
+SQL>/
+
+Enter value for proc_id:5
+Enter value for procedure:HEART WORM TEST
+
+SQL>/
+
+Enter value for proc_id:8
+Enter value for procedure:TETANUS VACCINATION
+
+SQL>Select PROC_ID,PROCEDURE FROM PROCEDURE_INFORMATION;
+
+
+create table Pet_Visit_Proc_Record(
+PET_ID int not null,
+PROC_ID int not null,
+VISIT_DATE date not null,
+primary key(PET_ID,PROC_ID,VISIT_DATE));
+
+desc PET_VISIT_PROC_RECORD;
+
+insert into Pet_Visit_Proc_Record values(&PET_ID,&Proc_ID,'&visit_date');
+
+Enter value for pet_id:246
+Enter value for proc_id:1
+Enter value for visit_date:Jan13/2002
+
+SQL>/
+
+Enter value for pet_id:246
+Enter value for proc_id:10
+Enter value for visit_date:Mar27/2002
+
