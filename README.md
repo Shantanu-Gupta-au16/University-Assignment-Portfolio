@@ -1,2 +1,2 @@
 # University-Assignment-Portfolio
-Portfolio of my data analytics assignments completed by me for Academic purposes.
+Portfolio of my Data Analytics assignments completed by me for Academic purposes.
