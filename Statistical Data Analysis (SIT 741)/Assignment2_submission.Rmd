@@ -1,0 +1,334 @@
+---
+title: "SIT741_Assignment 2"
+author: "Shantanu Gupta"
+date: "17 May 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Task 1:Source weather data
+
+```{r}
+library(magrittr) # need to run every time you start R and want to use %>%
+library(dplyr)    # alternative, this also loads %>%
+library(tidyverse)
+library(tidyr) 
+library(fitdistrplus)
+library(scales)
+library(rnoaa)#NOAA API
+library(ISLR)
+library(skimr)
+library(mgcv)   ## GAM Package
+library(gamair)
+library(lubridate) #Dates and Time Package
+library(broom)
+```
+```{r}
+options(noaakey = "vlkCHTlbHxaMelPjFsikwjEjYqnXdHQT") #Token
+Perth_data <- ncdc(
+  datasetid = 'GHCND',
+  stationid = 'GHCND:ASN00009021',
+  startdate = '2013-07-01',
+  enddate = '2014-06-30',
+  limit = 1000
+)$data
+```
+
+
+```{r}
+a<-nrow(Perth_data)
+sprintf("Rows in the dataset %s",a)
+```
+
+### Task 3:Model the ED demands
+
+```{r}
+ed_data_link <- 'govhack3.csv'
+top_row <- read_csv(ed_data_link, col_names = FALSE, n_max = 1)
+second_row <- read_csv(ed_data_link, n_max = 1)
+
+column_names <- second_row %>% 
+  unlist(., use.names=FALSE) %>% 
+  make.unique(., sep = "__") # double underscore
+
+column_names[2:8] <- str_c(column_names[2:8], '0', sep='__')
+
+daily_attendance <- read_csv(ed_data_link, skip = 2, col_names = column_names)
+
+daily_attendance
+
+hospital_name<-top_row[colSums(!is.na(top_row)) > 0]
+```
+
+```{r}
+daily_attendance$Date <- dmy(daily_attendance$Date)
+daily_attendance <- transform(daily_attendance, ndate = as.numeric(Date),
+                    nyear  = as.numeric(format(Date, '%Y')),
+                    nmonth = as.numeric(format(Date, '%m')),
+                    day    = as.numeric(format(Date, '%j')))
+str(daily_attendance)
+```
+
+####Task 3.1: Models for a single facility
+1.Pick a hospital
+```{r}
+sprintf("Royal Perth Hospital")
+```
+
+2.Linear Model
+#####Linear Model
+```{r}
+lmfit_royal <- lm(Attendance__0~day , 
+            data = daily_attendance) # Linear Model
+lmfit_royal
+```
+
+
+```{r}
+lmfit_royal %>% 
+  summary  #Summary
+```
+
+```{r}
+plot(lmfit_royal) #Plot
+```
+
+```{r}
+plot(cooks.distance(lmfit_royal), pch = 16, col = "black")
+```
+
+```{r}
+CD<-cooks.distance(lmfit_royal)
+rev(sort(round(CD,5)))
+```
+
+
+```{r}
+daily_attendance %>% 
+  ggplot(aes(x = day, 
+             y = Attendance__0)) +
+  geom_point() +
+  geom_smooth(method = 'lm') #Visualizing Linear Model
+```
+
+#####Poisson and General Linear Model
+```{r}
+poissonOut<-glm(Attendance__0~day , 
+            data = daily_attendance,family="poisson")
+poissonOut
+```
+
+```{r}
+summary(poissonOut)
+```
+
+```{r}
+tidy(poissonOut)
+```
+
+```{r}
+coef(poissonOut)
+```
+
+```{r}
+confint(poissonOut)
+```
+
+```{r}
+ggplot(data=daily_attendance,aes(x = day, 
+             y = Attendance__0))+
+  geom_jitter(width=0.05,height=0.05)+
+  geom_smooth(method='glm',method.args=list(family='poisson')) #Visualizing Poisson 
+```
+
+#####Negative Binomial and General Linear Model
+```{r}
+neg_binom_glm<-glm.nb(Attendance__0~day , 
+            data = daily_attendance)
+neg_binom_glm
+```
+
+```{r}
+summary(neg_binom_glm)
+```
+
+
+3. General Additive Model
+```{r}
+ct1 <- gam(Attendance__0 ~ s(day),data=daily_attendance,method="REML")
+ct1
+```
+
+```{r}
+summary(ct1)
+```
+
+```{r}
+coef(ct1) #Coefficients
+```
+
+
+```{r}
+augment(ct1)
+```
+
+```{r}
+tidy(ct1)
+```
+
+```{r}
+glance(ct1)
+```
+
+```{r}
+plot(ct1,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue") #Partial Effect Plot #Visualizing GAM
+```
+
+```{r}
+plot(ct1,seWithMean = TRUE,shift=coef(ct1)[1]) #Transforming Standard Error
+```
+
+```{r}
+gam.check(ct1) #Model Checking
+```
+
+```{r}
+concurvity(ct1,full=TRUE) #Checking Concurvity
+```
+
+
+```{r}
+results %>% 
+  ggplot(aes(sample = .resid)) +
+  geom_qq() + 
+  geom_qq_line(col = 'steelblue')
+```
+
+4.Akaike Information Criteria(AIC) and Bayesian Information Criteria(BIC)
+```{r}
+AIC(ct1)
+AIC(lmfit_royal)
+BIC(ct1)
+BIC(lmfit_royal)
+```
+
+####(Optional task) Task 3.2:Models for all hospitals
+```{r}
+ct2<- gam(Attendance__1 ~ s(day),data=daily_attendance,method="REML") #Fremantle Hospital
+summary(ct2)
+glance(ct2)
+plot(ct2,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct2)
+```
+
+```{r}
+ct3<- gam(Attendance__2 ~ s(day),data=daily_attendance,method="REML") #Princess Margaret Hospital for Children
+summary(ct3)
+glance(ct3)
+plot(ct3,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct3)
+```
+
+```{r}
+ct4<- gam(Attendance__3 ~ s(day),data=daily_attendance,method="REML") #King Edward Memorial Hospital for women
+summary(ct4)
+glance(ct4)
+plot(ct4,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct4)
+```
+
+```{r}
+ct5<- gam(Attendance__4 ~ s(day),data=daily_attendance,method="REML") #Sir Charles Gairdner Hospital
+summary(ct5)
+glance(ct5)
+plot(ct5,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct5)
+```
+
+```{r}
+ct6<- gam(Attendance__5 ~ s(day),data=daily_attendance,method="REML") #Armadale/kelmscott District Memorial Hospital
+summary(ct6)
+glance(ct6)
+plot(ct6,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct6)
+```
+
+```{r}
+ct7<- gam(Attendance__6 ~ s(day),data=daily_attendance,method="REML") #Swan District Hospital
+summary(ct7)
+glance(ct7)
+plot(ct7,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct7)
+```
+
+```{r}
+ct8<- gam(Attendance__7 ~ s(day),data=daily_attendance,method="REML") #Rockingham General Hospital
+summary(ct8)
+glance(ct8)
+plot(ct8,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct8)
+```
+
+```{r}
+ct9<- gam(Attendance__8 ~ s(day),data=daily_attendance,method="REML") #Joondalup Health Campus
+summary(ct9)
+glance(ct9)
+plot(ct9,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ct9)
+```
+
+### Task 4:Heatwaves and ED demands
+#####Task 4.1:Measuring heatwave
+```{r}
+options(noaakey = "vlkCHTlbHxaMelPjFsikwjEjYqnXdHQT") #Token
+Perth_data_avg <- ncdc(
+  datasetid = 'GHCND',
+  datatypeid = 'TAVG',
+  stationid = 'GHCND:ASN00009021',
+  startdate = '2013-07-01',
+  enddate = '2014-06-30',
+  limit = 1000
+)$data
+```
+
+
+```{r}
+library(RcppRoll)
+E_H_F<-Perth_data_avg %>%
+  mutate(t_3d_after=roll_meanr(lead(value),3)) %>%
+  mutate(EHF=t_3d_after-30)
+E_H_F[is.na(EHF)]=0
+E_H_F
+```
+
+```{r}
+Perth_data_avg %>% 
+  mutate(date = ymd_hms(E_H_F$date)) %>% 
+  ggplot(aes(x=date, 
+             y=E_H_F$EHF)) + 
+  geom_line(color='steelblue') + 
+  ylab("Excess Heat Factor")
+```
+
+#####Task 4.2:Models with EHF
+```{r}
+ehf_gam<-gam(Attendance__0 ~ s(day)+s(E_H_F$EHF),data=daily_attendance,method="REML")
+summary(ehf_gam)
+glance(ehf_gam)
+plot(ehf_gam,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(ehf_gam)
+```
+
+####(Optional task) Task 4.3:Extra weather features
+```{r}
+extra_gam<-gam(Attendance__0 ~s(day)+s(E_H_F$EHF)+s(E_H_F$value),data=daily_attendance,method="REML")
+summary(extra_gam)
+glance(extra_gam)
+plot(extra_gam,rug=TRUE,residuals = TRUE,pch=1,cex=1,shade=TRUE,shade.col="steelblue")
+gam.check(extra_gam)
+```
+
+

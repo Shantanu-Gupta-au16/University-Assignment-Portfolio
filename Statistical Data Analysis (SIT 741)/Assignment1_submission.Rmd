@@ -1,0 +1,405 @@
+#Task 1.1
+#Importing the dataset "govhack3" into R
+#Reading the file
+#install.packages("utils")
+#install.packages("tidyverse")
+#install.packages("dplyr")
+library(utils)
+library(tidyverse)
+library(dplyr)
+ed<-read.csv("govhack3.csv", stringsAsFactors = FALSE)
+View(ed)
+summary(ed)
+glimpse(ed)
+
+#Task 1.2
+#Rows in Dataset
+nrow(ed)
+#Data Types
+str(ed)
+View(ed)
+summary(ed)
+glimpse(ed)
+
+#Task 2:Tidy data
+#Task 2.1 Cleaning up columns
+ed_data_link <- 'govhack3.csv'
+top_row <- read_csv(ed_data_link, col_names = FALSE, n_max = 1)
+second_row <- read_csv(ed_data_link, n_max = 1)
+
+column_names <- second_row %>% 
+  unlist(., use.names=FALSE) %>% 
+  make.unique(., sep = "__") # double underscore
+
+column_names[2:8] <- str_c(column_names[2:8], '0', sep='__')
+
+daily_attendance <- 
+  read_csv(ed_data_link, skip = 2, col_names = column_names)
+
+# Healthcare facilites in the data
+hf <- top_row
+typeof(hf)
+hf[hf == 'N/A'] <- 'NA'
+View(hf)
+
+hospital <- top_row[,c(2,9,16,23,30,37,44,51,58)]
+print(hospital)
+class(hospital)
+str(hospital)
+dim(hospital)
+summary(hospital)
+glimpse(hospital)
+
+#Task 2.2 Tidying data
+#Vector for date
+date <- daily_attendance[,1]
+typeof(date)
+date_list=list(date)
+typeof(date_list)
+eapply(.GlobalEnv,typeof)
+
+#Dataframes for hospitals
+Royalperth <- daily_attendance[,c(2:8)]
+Fremantle <- daily_attendance[,c(9:15)]
+PrincessMargaret <- daily_attendance[,c(16:22)]
+KingEdward <- daily_attendance[,c(23:29)]
+SirCharles <- daily_attendance[,c(30:36)]
+Armadale <- daily_attendance [,c(37:43)]
+Swan  <- daily_attendance[,c(44:50)]
+Rockingham <- daily_attendance[,c(51:57)]
+Joondalup <- daily_attendance[,c(58:64)]
+
+#Creating vectors for different hospitals 
+Hospital_Royalperth <- c()
+Hospital_Fremantle <- c()
+Hospital_PrincessMargaret <- c()
+Hospital_KingEdward <- c()
+Hospital_SirCharles <- c()
+Hospital_Armadale <- c()
+Hospital_Swan <- c()
+Hospital_Rockingham <- c()
+Hospital_Joondalup <- c()
+
+#Creating a column of 365 values of different hospitals
+n=365
+for (i in 1:n) {
+  Hospital_Royalperth[i] <- "Royal_Perth"
+  Hospital_Fremantle[i] <- "Fermantle"
+  Hospital_PrincessMargaret[i]<-"Princess_Margaret"
+  Hospital_KingEdward[i] <- "King_Edward"
+  Hospital_SirCharles[i]<- "Sir_Charles"
+  Hospital_Armadale[i] <- "Armadale"
+  Hospital_Swan[i]<- "Swan"
+  Hospital_Rockingham[i] <- "Rockingham"
+  Hospital_Joondalup[i] <- "Joondalup"
+}
+
+#Combining R objects By Columns
+#Binding of data and having the same headers for data
+#Royal Perth Hospital Dataframe
+x1 <- cbind(date,Hospital_Royalperth,Royalperth)
+names(x1) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x1$Tri_1[x1$Tri_1=='N/A'] <- 'NA'
+x1$Tri_5[x1$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x1$Tri_1[x1$Tri_1=='NA']  <- floor(mean(as.numeric(x1[,5]),na.rm=TRUE))
+x1$Tri_5[x1$Tri_5=='NA'] <- floor(mean(as.numeric(x1[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x1$Tri_1<-as.numeric(x1$Tri_1)
+x1$Tri_5<-as.numeric(x1$Tri_5)
+View(x1)
+str(x1)
+
+#Fremantle Hospital Dataframe
+x2 <- cbind(date,Hospital_Fremantle,Fremantle)
+names(x2) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x2$Tri_1[x2$Tri_1=='N/A'] <- 'NA'
+x2$Tri_5[x2$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x2$Tri_1[x2$Tri_1=='NA']<- floor(mean(as.numeric(x2[,5]),na.rm=TRUE))
+x2$Tri_5[x2$Tri_5=='NA'] <- floor(mean(as.numeric(x2[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x2$Tri_1<-as.numeric(x2$Tri_1)
+x2$Tri_5<-as.numeric(x2$Tri_5)
+View(x2)
+str(x2)
+
+#Princess Margaret Hospital for Children Dataframe
+x3<- cbind(date,Hospital_PrincessMargaret,PrincessMargaret)
+names(x3) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x3$Tri_1[x3$Tri_1=='N/A'] <- 'NA'
+x3$Tri_2[x3$Tri_2=='N/A'] <- 'NA'
+x3$Tri_5[x3$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x3$Tri_1[x3$Tri_1=='NA'] <- floor(mean(as.numeric(x3[,5]),na.rm=TRUE))
+x3$Tri_2[x3$Tri_2=='NA'] <- floor(mean(as.numeric(x3[,6]),na.rm=TRUE))
+x3$Tri_5[x3$Tri_5=='NA'] <- floor(mean(as.numeric(x3[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x3$Tri_1<-as.numeric(x3$Tri_1)
+x3$Tri_2<-as.numeric(x3$Tri_2)
+x3$Tri_5<-as.numeric(x3$Tri_5)
+View(x3)
+str(x3)
+
+#King Edward Memorial Hospital for Women Dataframe
+x4<- cbind(date,Hospital_KingEdward,KingEdward)
+names(x4) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x4$Admissions[x4$Admissions=='N/A'] <- 'NA'
+x4$Tri_1[x4$Tri_1=='N/A'] <- 'NA'
+x4$Tri_2[x4$Tri_2=='N/A'] <- 'NA'
+x4$Tri_3[x4$Tri_3=='N/A'] <- 'NA'
+x4$Tri_5[x4$Tri_5=='N/A'] <- 'NA'
+#All missing value in Tri_1,so replace all value with zero
+x4$Tri_1[x4$Tri_1=='NA'] <- 0
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x4$Admissions[x4$Admissions=='NA'] <-floor(mean(as.numeric(x4[,4]),na.rm=TRUE))
+x4$Tri_2[x4$Tri_2=='NA']<- floor(mean(as.numeric(x4[,6]),na.rm=TRUE))
+x4$Tri_3[x4$Tri_3=='NA'] <- floor(mean(as.numeric(x4[,7]),na.rm=TRUE))
+x4$Tri_5[x4$Tri_5=='NA'] <- floor(mean(as.numeric(x4[,9]),na.rm=TRUE))
+#Converting Character to numeric 
+x4$Admissions<- as.numeric(x4$Admissions)
+x4$Tri_1<-as.numeric(x4$Tri_1)
+x4$Tri_2<-as.numeric(x4$Tri_2)
+x4$Tri_3<-as.numeric(x4$Tri_3)
+x4$Tri_5<-as.numeric(x4$Tri_5)
+View(x4)
+str(x4)
+
+#Sir Charles Gairdner Hospital Dataframe
+x5<- cbind(date,Hospital_SirCharles,SirCharles)
+names(x5) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x5$Tri_1[x5$Tri_1=='N/A'] <- 'NA'
+x5$Tri_5[x5$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x5$Tri_1[x5$Tri_1=='NA']  <- floor(mean(as.numeric(x5[,5]),na.rm=TRUE))
+x5$Tri_5[x5$Tri_5=='NA']  <- floor(mean(as.numeric(x5[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x5$Tri_1<-as.numeric(x5$Tri_1)
+x5$Tri_5<-as.numeric(x5$Tri_5)
+View(x5)
+str(x5)
+
+#Armadale/Kelmscott District Memorial Hospital Dataframe
+x6<- cbind(date,Hospital_Armadale,Armadale)
+names(x6) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x6$Tri_1[x6$Tri_1=='N/A'] <- 'NA'
+x6$Tri_5[x6$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x6$Tri_1[x6$Tri_1=='NA'] <- floor(mean(as.numeric(x6[,5]),na.rm=TRUE))
+x6$Tri_5[x6$Tri_5=='NA']  <- floor(mean(as.numeric(x6[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x6$Tri_1<-as.numeric(x6$Tri_1)
+x6$Tri_5<-as.numeric(x6$Tri_5)
+View(x6)
+str(x6)
+
+#Swan District Hospital Dataframe
+x7<- cbind(date,Hospital_Swan,Swan)
+names(x7) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x7$Tri_1[x7$Tri_1=='N/A'] <- 'NA'
+x7$Tri_5[x7$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x7$Tri_1[x7$Tri_1=='NA'] <- floor(mean(as.numeric(x7[,5]),na.rm=TRUE))
+x7$Tri_5[x7$Tri_5=='NA']  <- floor(mean(as.numeric(x7[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x7$Tri_1<-as.numeric(x7$Tri_1)
+x7$Tri_5<-as.numeric(x7$Tri_5)
+View(x7)
+str(x7)
+
+#Rockingham General Hospital Dataframe
+x8<- cbind(date,Hospital_Rockingham,Rockingham)
+names(x8) <- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x8$Admissions[x8$Admissions=='N/A'] <- 'NA'
+x8$Tri_1[x8$Tri_1=='N/A'] <- 'NA'
+x8$Tri_5[x8$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x8$Admissions[x8$Admissions=='NA'] <-floor(mean(as.numeric(x8[,4]),na.rm=TRUE))
+x8$Tri_1[x8$Tri_1=='NA']  <- floor(mean(as.numeric(x8[,5]),na.rm=TRUE))
+x8$Tri_5[x8$Tri_5=='NA']  <- floor(mean(as.numeric(x8[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x8$Admissions<- as.numeric(x8$Admissions)
+x8$Tri_1<-as.numeric(x8$Tri_1)
+x8$Tri_5<-as.numeric(x8$Tri_5)
+View(x8)
+str(x8)
+
+#Joondalup Health Campus Hospital Dataframe
+x9<- cbind(date,Hospital_Joondalup,Joondalup)
+names(x9)<- c("Date","Hospital","Attendance", "Admissions","Tri_1","Tri_2","Tri_3","Tri_4","Tri_5")
+#Replacing the 'N/A' with 'NA' as 'N/A' is not recognised by R
+x9$Tri_1[x9$Tri_1=='N/A'] <- 'NA'
+x9$Tri_5[x9$Tri_5=='N/A'] <- 'NA'
+#Mean Imputation Method
+#Replacing Missing Value with Mean
+#Floor-Converting to round number
+x9$Tri_1[x9$Tri_1=='NA']  <- floor(mean(as.numeric(x9[,5]),na.rm=TRUE))
+x9$Tri_5[x9$Tri_5=='NA']  <- floor(mean(as.numeric(x9[,9]),na.rm=TRUE))
+#Converting Character to numeric
+x9$Tri_1<-as.numeric(x9$Tri_1)
+x9$Tri_5<-as.numeric(x9$Tri_5)
+View(x9)
+str(x9)
+
+#Bind multiple Data frames by row
+hospital <-rbind(x1,x2,x3,x4,x5,x6,x7,x8,x9)
+View(hospital)
+str(hospital)
+#Long Dataset
+hospital.long<-gather(hospital,triage,values,Tri_1:Tri_5)
+View(hospital.long)
+head(5)
+#Royal Perth Long Dataset
+x1.long<-gather(x1,triage,values,Tri_1:Tri_5)
+View(x1.long)
+
+#Task 3
+#Task 3.1 Selecting a hospital
+#Hospital selected - Royal Perth
+View(x1)
+str(x1)
+Royal_Perth <- x1
+View(Royal_Perth)
+#Name of the hospital
+unique(Royal_Perth$Hospital) 
+#total number of ED attendances
+sum(Royal_Perth$Admissions)
+#total number of ED admissions
+sum(Royal_Perth$Attendance) 
+
+#Task 3.2 Plotting the data 
+#Convert Character to Date
+Royal_Perth$Date<-as.POSIXct(Royal_Perth$Date,format="%d-%b-%Y")
+str(Royal_Perth)
+#install.packages("ggplot2")
+library(ggplot2)
+theme_set(theme_minimal())
+p1<-ggplot(data=Royal_Perth)
+p2<-p1+geom_line(aes(x=Date,y=Attendance,color=Date),size=1.2)+ggtitle("Emegency Departments demands across the year")
+p3<-p2+geom_hline(yintercept = 227,colour="Black",size=1.2,linetype=3)
+print(p3)
+
+#Task 3.3
+index<-1
+n<-52
+att_mean<-c()
+weeks<-c()
+for(i in 1:n){
+  att_mean[i]<-floor(mean(Royal_Perth$Attendance[index:(i*7)],na.rm=TRUE))
+  index<-(i*7)+1
+  weeks[i]<-i
+}
+View(att_mean)
+View(weeks)
+plot(weeks,att_mean,main="Weekly demands of Emergency Departments",xlab="weeks",ylab="mean of every week attendance",col="blue")
+
+#3.4 Choosing appropriate model
+#install.packages("magrittr")
+#install.packages("fitdistrplus")
+library(magrittr)
+library(fitdistrplus)
+Royal_Perth %$% 
+  descdist(Attendance, boot = 100)
+
+#Task 4
+#Task 4.1 Fitting Distributions
+#Fit distribution via the maximum likelihood principle
+#Poisson Distribution
+#MLE for poission
+poisson_estimate <- Royal_Perth %$%
+  fitdist(Royal_Perth$Tri_1,distr="pois")
+
+#Plotting Distribution
+poisson_estimate%>%
+  plot
+
+#QQ-Plot
+poisson_estimate%>% 
+  qqcomp
+
+#PP-Plot
+poisson_estimate%>%
+  ppcomp
+
+#Summary
+poisson_estimate %>%
+  summary
+
+#Negative Binomial Distribution
+#MLE for negative binomial distribution
+nbinom_estimate <- Royal_Perth %$%
+  fitdist(Royal_Perth$Tri_1,distr="nbinom")
+
+#Plotting Distribution
+nbinom_estimate%>%
+  plot
+
+#QQ-Plot
+nbinom_estimate%>% 
+  qqcomp
+
+#PP-Plot
+nbinom_estimate%>%
+  ppcomp
+
+#Summary
+nbinom_estimate %>%
+  summary
+
+#Task5 Research question
+#Maximum Likelihood Estimation
+p_mle<-fitdist(Royal_Perth$Tri_1,"pois",method="mle")
+summary(p_mle)
+plot(p_mle)
+
+#Moment Matching Estimation
+p_mme<-fitdist(Royal_Perth$Tri_1,"pois",method="mme")
+summary(p_mme)
+plot(p_mme)
+
+cbind(MLE=p_mle$estimate,MME=p_mme$estimate)
+
+#Log-normal appropriate model
+Royal_Perth %$%
+  descdist(Tri_1,boot=100)
+
+#Maximum Likelihood Estimation
+lnorm_mle<-fitdist(Royal_Perth$Tri_1,"lnorm",method="mle")
+summary(lnorm_mle)
+plot(lnorm_mle)
+
+#Moment Matching Estimation
+lnorm_mme<-fitdist(Royal_Perth$Tri_1,"lnorm",method="mme")
+summary(lnorm_mme)
+plot(lnorm_mme)
+
+#Quantile Matching Estimation
+lnorm_QME<-fitdist(Royal_Perth$Tri_1,"lnorm",method="qme",probs=c(0.25,0.75))
+summary(lnorm_QME)
+plot(lnorm_QME)
+
+
