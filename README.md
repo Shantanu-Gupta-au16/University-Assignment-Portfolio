@@ -49,7 +49,7 @@ Portfolio of my Data Analytics assignments completed by me for Academic purposes
 ### Machine Learning
 1. [BBC Dataset](https://github.com/Shantanu9326/Text-Mining-Mini-Projects/blob/master/Named_Entity_Recognition.ipynb): 
 
-2. [Breast Cancer Winscon](https://github.com/Shantanu9326/Text-Mining-Mini-Projects/blob/master/Part_of_Speech_Assessment.ipynb): 
+2. [Breast Cancer Classification](https://github.com/Shantanu9326/Text-Mining-Mini-Projects/blob/master/Part_of_Speech_Assessment.ipynb): To predict whether a cancer is benign or malignant.Developed an algorithm that uses SVM to accurately predict (~97 percent accuracy) if a breast cancer tumor is benign or malignant, basically teaching a machine to predict breast cancer. 
 
 
 ### Security & Privacy Issues in Analytic
