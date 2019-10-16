@@ -74,19 +74,17 @@ Portfolio of my Data Analytics assignments completed by me for Academic purposes
 + Identify it assets and business value,returns,risks
 + Apply RBV and competive advantage over the firm
 
+### Marketing Analytics
+
+
+### Supply Chain Management and Logistics
+
   
-# Pre-requisites
-
-- the basics of R, Python, SQL
-- a bit about Jupyter Notebooks
-- a bit about the tidyverse package
-- using the terminal/shell
-
 # License
 
 MIT
 
 # Help
 
-If you find any mistakes or you can't figure out something, raise a question. I will get back to you as soon as possible. If you liked what you saw, want to have a chat with me about the portfolio, work opportunities, or collaboration, shoot an email at shantanu97@gmail.com
+If you find any mistakes or you can't figure out something, raise a question. I will get back to you as soon as possible. If you liked what you saw, want to have a chat with me about the portfolio, work opportunities, or collaboration, shoot an email at gupta.sha@outlook.com
 
