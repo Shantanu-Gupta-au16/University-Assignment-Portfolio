@@ -1,7 +1,7 @@
 # University-Assignment-Portfolio
 ![alt text](https://ym8tixx0byc2uhkrbzptjyt-wpengine.netdna-ssl.com/wp-content/uploads/2019/05/HDR-Scholarship-for-International-Students-at-Deakin-University-Australia.jpg)
 
-Portfolio of my Data Analytics assignments completed by me for Academic purposes.
+Portfolio of my data analytics assignments completed by me for Academic purposes.
 ## Contents
 ### Descriptive Analytics & Visualization
  1. [Analysis of mobile phone usage in Australia](): 
@@ -26,13 +26,7 @@ Portfolio of my Data Analytics assignments completed by me for Academic purposes
 
 	
 ### Predictive Analytics 
-[Analysis of Wine Dataset](): 
-+ Use cv/bagging and boosting models.
-+ Discover taste and price patterns of different types of wine over the world.
-+ Analyse wine rating dataset.
-+ To identify potential excellent wine with affordable price.
-+ The raw data was scraped from wine enthusiast.
-+ Develop a data mining method of classifying imported wine based on price.
+[Analysis of Wine Dataset]():+ Develop a data mining method of classifying imported wine based on price.
 + Create a wine origin and marketability
 + Best source of wine and optimum price rating ratio.
 + Clean-up and explore wine tasting data. Create models like k-nn, naïve Bayes, decision trees.
@@ -52,11 +46,14 @@ Portfolio of my Data Analytics assignments completed by me for Academic purposes
 2. [Breast Cancer Classification](https://github.com/Shantanu9326/University-Assignment-Portfolio/tree/master/Machine%20Learning(SIT%20720)): To predict whether a cancer is benign or malignant.Developed an algorithm that uses SVM to accurately predict (~97 percent accuracy) if a breast cancer tumor is benign or malignant, basically teaching a machine to predict breast cancer.
 
 3. [Human-Activity-Recognition-Using-Smartphones]():
+― Predict a person’s actions based on a trace of their movement using sensors.
+― Applied supervised learning algorithms such as K-Nearest Neighbor Classification, Multiclass Logistic Regression with Elastic Net, Support Vector Machine (RBF Kernel), and Random Forest.
+― Optimized the best candidate model by hyper-parameter tuning using Grid Search and Cross-Validation; trained a random forest to predict with 99% accuracy.
 
 
 ### Security & Privacy Issues in Analytic
 1. [Cambridge Analytic and Facebook Studies]():
-+ Develop a piracy & security issues reporting relation to Cambridge analytical and Facebook situation.
++ Develop a privacy & security issues reporting relation to Cambridge analytical and Facebook situation.
 + Provide risks, recognize and apply the relevance Ethical, Regulatory And Governance Issues In Victoria.
 
 2. [Dumnonia Corporation]():
@@ -76,8 +73,15 @@ Portfolio of my Data Analytics assignments completed by me for Academic purposes
 + Identify it assets and business value,returns,risks
 + Apply RBV and competive advantage over the firm
 
-### Marketing Analytics
+### Modern Data Science
+1. [Wine Review Analysis]():
 
+2. [Banking-Marketing-Campaign-with-Spark]():
+
+### Marketing Analytics
+1. [Price and Promotion Analytics of Carman's Kitchen]():
+
+2. [Conjoint Analysis of Sony Curved Telivision]():
 
 ### Supply Chain Management and Logistics
 
