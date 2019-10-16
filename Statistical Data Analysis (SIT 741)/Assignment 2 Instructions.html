@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta charset="utf-8">
+<title>Page Title</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- FONT
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="/shared/HTML Templates/ArtsEd/css/theme-green.css">
+
+</head>
+<body>
+<div id="MathJax_Hidden">
+<div id="header">
+<div id="header">
+<div>
+<div id="header">
+<h1>SIT741 Assignment 2</h1>
+<h4><em>Unit Chair: Wei Luo</em></h4>
+<h4><em>Due: 17 May 2019</em></h4>
+</div>
+<p><em>Assignment 2 contributes 40% of your final SIT741 mark (The full mark is 40). It must be completed individually, and submitted to CloudDeakin before the due date: 11 pm, 17/05/2019 (Week 10 Friday).</em></p>
+<p>In this assignment, you will apply your learning to further analyse the 2013-2014 emergency department (ED) demands at Perth and its connection with weather events. This activity builds on Assignment 1; you may want to review your assignment 1 solution and identify any reusable code. Please start early so that you can identify any skill/knowledge gap and seek support from the teaching staff and other students.</p>
+<p>This assignment contains two optional tasks (Task 3.2 and 4.3). You should complete the prescribed tasks before attempting the optional ones.</p>
+<div id="application-scenario">
+<h2>Application scenario</h2>
+<p>You work in a data science team that tries to model the ED demands in the Perth area to improve the demand prediction.<br /> For your convenience, you are provided with the following data links, but you are encouraged to include other relevant data for your analyses.</p>
+<ol>
+<li>The <em>emergency departments admissions and attendances</em> data set provided by the Department of Health of Western Australia:</li>
+</ol>
+<pre><code><a href="http://data.gov.au/dataset/emergency-department-admissisons-and-attendances">http://data.gov.au/dataset/emergency-department-admissisons-and-attendances</a></code></pre>
+<ol start="2">
+<li>The daily temperature and precipitation data for the region accessible through the NOAA data APIs.</li>
+</ol>
+<pre><code><a href="https://www.ncdc.noaa.gov/cdo-web/webservices/v2">https://www.ncdc.noaa.gov/cdo-web/webservices/v2</a></code></pre>
+<p>Of particular relevance is the &ldquo;Global Historical Climatology Network - Daily&rdquo; data:</p>
+<pre><code><a href="https://www.ncdc.noaa.gov/ghcn-daily-description">https://www.ncdc.noaa.gov/ghcn-daily-description</a>
+<a href="https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt">https://www1.ncdc.noaa.gov/pub/data/ghcn/daily/readme.txt</a></code></pre>
+</div>
+<div id="task-1-source-weather-data-5-points">
+<h2>Task 1: Source weather data (5 points)</h2>
+<p>From Assignment 1, you have processed data for the ED demands. We still need to find local weather data from the same period. You are encouraged to find weather data online. Besides the NOAA data, you may also use data from <a href="http://www.bom.gov.au/climate/data-services/station-data.shtml">the Bureau of Meteorology historical weather observations and statistics</a>. (The NOAA Climate Data might be easier to process.)</p>
+<p>Answer the following questions:</p>
+<ol>
+<li>
+<p>Which data source do you plan to use? Justify your decision.</p>
+</li>
+<li>
+<p>From the data source identified, download daily temperature and precipitation data for the region during the relevant time period. (Hint: If you download data from NOAA <a href="https://www.ncdc.noaa.gov/cdo-web/">https://www.ncdc.noaa.gov/cdo-web/</a>, you need to request an NOAA web service token for accessing the data.)</p>
+</li>
+<li>Answer the following questions:</li>
+</ol>
+<ul>
+<li>How many rows are in the data?</li>
+<li>What time period does the data cover?</li>
+</ul>
+</div>
+<div id="task-2-model-planning-5-points">
+<h2>Task 2: Model planning (5 points)</h2>
+<p>Careful planning is essential for a successful modelling effort. Please answer the following planning questions.</p>
+<ol>
+<li>
+<p>How will the final model be used? How will it be relevant to the overcrowding problems at our EDs? (You may find some inspiration here <a href="http://bit.ly/2p5qLH6">http://bit.ly/2p5qLH6</a> .) Who are the potential users of your model?</p>
+</li>
+<li>
+<p>What relationship do you plan to model or what do you want to predict? What is the response variable? What are the predictor variables? Will the variables in your model be routinely collected and made available soon enough for prediction?</p>
+</li>
+<li>
+<p>As you are likely to build your model on historical data, will the data in the future have similar characteristics?</p>
+</li>
+<li>
+<p>What statistical method(s) will be applied to generate the model? Why?</p>
+</li>
+</ol>
+</div>
+<div id="task-3-model-the-ed-demands-10-points">
+<h2>Task 3: Model the ED demands (10 points)</h2>
+<p>We will start with simple models and gradually improve them. We will focus on the ED demand variable(s) that you defined in Assignment 1. Let&rsquo;s denote it <em>Y</em>.</p>
+<div id="task-3.1-models-for-a-single-facility-10-points">
+<h3>Task 3.1: Models for a single facility (10 points)</h3>
+<p>Randomly pick a hospital from the ED dataset.</p>
+<ol>
+<li>
+<p>Which hospital do you pick?</p>
+</li>
+<li>
+<p>Fit a linear model for <em>Y</em> using <code>date</code> as the predictor variable. Plot the fitted values and the residuals. Assess the model fit. Is a linear function sufficient for modelling the trend of <em>Y</em>? Support your conclusion with plots.</p>
+</li>
+<li>
+<p>As we are not interested in the trend itself, relax the linearity assumption by fitting a generalised additive model (GAM). Assess the model fit. Do you see patterns in the residuals indicating insufficient model fit?</p>
+</li>
+<li>
+<p>Augment the model to incorporate the weekly seasonality. Compare the models using the Akaike information criterion (AIC). Report the best-fitted model through coefficient estimates and/or plots.</p>
+</li>
+<li>
+<p>Analyse the residuals. Do you see any remaining correlation patterns among the residuals?</p>
+</li>
+<li>
+<p>Is your day-of-the-week variable numeric, ordinal, or categorical? Does the decision affect the model fit?</p>
+</li>
+</ol>
+</div>
+<div id="optional-task-task-3.2-models-for-all-hospitals">
+<h3>(Optional task) Task 3.2: Models for all hospitals</h3>
+<p>Now fit a GAM for each hospital.</p>
+<ol>
+<li>
+<p>Use the <code>map</code> function to rerun your Task 2.1 code on all nine Perth hospitals.</p>
+</li>
+<li>
+<p>Plot the trends and residuals. What patterns do you see? Given what you found in Assignment 1, do you gain any new understanding of the ED demands?</p>
+</li>
+</ol>
+</div>
+</div>
+<div id="task-4-heatwaves-and-ed-demands-15-points">
+<h2>Task 4 Heatwaves and ED demands (15 points)</h2>
+<p>The connection between heatwaves and the ED demands is widely reported, as in this news article.</p>
+<pre><code><a href="http://bit.ly/2kTE4cu">http://bit.ly/2kTE4cu</a></code></pre>
+<p>In this task, you will try to measure the heatwave and assess its impact on the ED demands.</p>
+<div id="task-4.1-measuring-heatwave-7-points">
+<h3>Task 4.1: Measuring heatwave (7 points)</h3>
+<ol>
+<li>John Nairn and Robert Fawcett from the Australian Bureau of Meteorology have proposed a measure for the heatwave, called the excess heat factor (EHF). Read the following article to understand the definition of the EHF.</li>
+</ol>
+<pre><code><a href="https://dx.doi.org/10.3390%2Fijerph120100227">https://dx.doi.org/10.3390%2Fijerph120100227</a></code></pre>
+<ol start="2">
+<li>Use the NOAA data to calculate the daily EHF values for the Perth area during the relevant time period. Plot the daily EHF values.</li>
+</ol>
+</div>
+<div id="task-4.2-models-with-ehf-8-points">
+<h3>Task 4.2: Models with EHF (8 points)</h3>
+<p>Use the EHF as an additional predictor to augment the model(s) that you fitted before. Report the estimated effect of the EHF on the ED demand. Does the extra predictor improve the model fit? What conclusions can you draw?</p>
+</div>
+<div id="optional-task-task-4.3-extra-weather-features">
+<h3>(Optional task) Task 4.3: Extra weather features</h3>
+<p>Can you think of extra weather features that may be more predictive of ED demands? Try incorporating your feature into the model and see if it improves the model fit.</p>
+</div>
+</div>
+<div id="task-5-reflection-5-points">
+<h2>Task 5: Reflection (5 points)</h2>
+<p>Answer the following questions:</p>
+<ol>
+<li>We used some historical data to fit regression models. What are the limitations of such data, if any?</li>
+<li>Regression models can be used for 1) understanding a process, or 2) making predictions. In this assignment, do we have reasons to choose one objective over the other? How would the decision affect our models?</li>
+<li>Overall, have your analyses answered the questions that you set out to answer?</li>
+</ol>
+</div>
+<div id="what-to-submit">
+<h2>What to submit</h2>
+<p>By the due date, you are required to submit the following files to the assignment Dropbox in CloudDeakin.</p>
+<ol>
+<li>An MS Word or PDF file containing your answers to all the assignment questions.</li>
+<li>An R Notebook file <code>Assignment2_submission.Rmd</code> containing all your code. The file should be able to run. Include sufficient comments so that the script can be understood by your marker. Indicate all the packages that need to be installed separately.</li>
+</ol>
+</div>
+<div id="marking-criteria">
+<h2>Marking criteria</h2>
+<p>Your submission will be marked using the following criteria.</p>
+<ul>
+<li>Showing good effort through completed tasks.</li>
+<li>Applying statistical thinking to understand the problems and to identify solutions.</li>
+<li>Applying statistical programming skills to obtain data and to process them for data analysis.</li>
+<li>Applying regression modelling techniques to discover and quantify relationships among variables.</li>
+<li>Demonstrating creativity and resourcefulness in solutions.</li>
+<li>Showing attention to details through a good quality assignment report.</li>
+<li>Bonus mark may be awarded for completing optional tasks.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
