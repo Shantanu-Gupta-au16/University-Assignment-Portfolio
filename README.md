@@ -26,7 +26,8 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 
 	
 ### Predictive Analytics 
-[Analysis of Wine Dataset]():+ Develop a data mining method of classifying imported wine based on price.
+[Analysis of Wine Dataset]():
++ Develop a data mining method of classifying imported wine based on price.
 + Create a wine origin and marketability
 + Best source of wine and optimum price rating ratio.
 + Clean-up and explore wine tasting data. Create models like k-nn, naïve Bayes, decision trees.
@@ -52,11 +53,11 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 
 
 ### Security & Privacy Issues in Analytic
-1. [Cambridge Analytic and Facebook Studies]():
+1. [Cambridge Analytic and Facebook Studies](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Security%20and%20Privacy%20Issues%20in%20Analytics(SIT719)/218200234_Shantanu_Gupta-Assignment1.pdf):
 + Develop a privacy & security issues reporting relation to Cambridge analytical and Facebook situation.
 + Provide risks, recognize and apply the relevance Ethical, Regulatory And Governance Issues In Victoria.
 
-2. [Dumnonia Corporation]():
+2. [Dumnonia Corporation](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Security%20and%20Privacy%20Issues%20in%20Analytics(SIT719)/218200234_Assigment2.pdf):
 + Implementation of K-Anonymity as a Model for Protecting Privacy For an organization. 
 + Implementation of cloud technology.
 + Provide technological solutions.
