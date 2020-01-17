@@ -12,7 +12,7 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 + Apply quantitative reasoning skills to solve complex problems
 +  Include commentary on the user’s expenditure, usages, patterns, satisfaction levels and demographic, social media engagement
 
-2. [Mad Dog Craft Beer Sales Analysis]():
+2. [Mad Dog Craft Beer Sales Analysis](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Descriptive%20Analytics%20%26%20Visualization(MIS%20771)/A2_218200234.pdf):
 + Conducted predictive analysis of beer data and gave recommendations to improve sales from the historic data. 
 + Performed basic statistic operations, outlier analysis tests, linear regression, and logistic regression in Excel. 
 + Developed proposals on where to put effort and money to improve perceptions of product quality and brand image so as to increase the probability of being recommended.
