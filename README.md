@@ -44,12 +44,14 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 ### Machine Learning
 1. [BBC Dataset](https://github.com/Shantanu9326/Text-Mining-Mini-Projects/blob/master/Named_Entity_Recognition.ipynb): 
 
-2. [Breast Cancer Classification](https://github.com/Shantanu9326/University-Assignment-Portfolio/tree/master/Machine%20Learning(SIT%20720)): To predict whether a cancer is benign or malignant.Developed an algorithm that uses SVM to accurately predict (~97 percent accuracy) if a breast cancer tumor is benign or malignant, basically teaching a machine to predict breast cancer.
+2. [Breast Cancer Classification](https://github.com/Shantanu9326/University-Assignment-Portfolio/tree/master/Machine%20Learning(SIT%20720)): 
++ To predict whether a cancer is benign or malignant.
++ Developed an algorithm that uses SVM to accurately predict (~97 percent accuracy) if a breast cancer tumor is benign or malignant, basically teaching a machine to predict breast cancer.
 
 3. [Human-Activity-Recognition-Using-Smartphones]():
-― Predict a person’s actions based on a trace of their movement using sensors.
-― Applied supervised learning algorithms such as K-Nearest Neighbor Classification, Multiclass Logistic Regression with Elastic Net, Support Vector Machine (RBF Kernel), and Random Forest.
-― Optimized the best candidate model by hyper-parameter tuning using Grid Search and Cross-Validation; trained a random forest to predict with 99% accuracy.
++ Predict a person’s actions based on a trace of their movement using sensors.
++ Applied supervised learning algorithms such as K-Nearest Neighbor Classification, Multiclass Logistic Regression with Elastic Net, Support Vector Machine (RBF Kernel), and Random Forest.
++ Optimized the best candidate model by hyper-parameter tuning using Grid Search and Cross-Validation; trained a random forest to predict with 99% accuracy.
 
 
 ### Security & Privacy Issues in Analytic
