@@ -65,8 +65,10 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 ### Real World Analytics
 [Energy-Efficiency-for-Building-in-R](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Real%20Word%20Analytics(SIT718)/Real%20World%20Analytics%20Assignment.pdf): Analysis of Energy Efficiency Dataset for Building in R
 
-
 ### Database and Information retreival
+1. [SQL Query](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Database%20and%20Information%20Retrieval(SIT772)/SIT772_Assignment1.pdf):
+
+2. [Retreival](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Database%20and%20Information%20Retrieval(SIT772)/218200234_Shantanu_Assignment2_SIT772.pdf):
 
 ### Value of Information
  [IT Portfolio of Gap Inc.](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Value%20of%20Information(MIS782)/Final%20Project.pdf):
@@ -75,7 +77,7 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 + Apply RBV and competive advantage over the firm
 
 ### Modern Data Science
-1. [Wine Review Analysis]():
+1. [Wine Review Analysis](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Modern%20Data%20Science(SIT%20742)/218200234-SIT742Task1.ipynb):
 
 2. [Banking-Marketing-Campaign-with-Spark](https://github.com/Shantanu9326/Banking-Marketing-Campaign-with-Spark/blob/master/Banking_Marketing_Campaign_with_pySpark.ipynb):
 
@@ -85,6 +87,7 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 2. [Conjoint Analysis of Sony Curved Telivision](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Marketing%20Analytics(MIS713)/MIS784_A2_218200234.docx):
 
 ### Supply Chain Management and Logistics
+1. [British Petroleum](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Supply%20Chain%20Management%20and%20Logistics(MIS784)/Gupta_MIS713_T2_2019_assign.pdf)
 
   
 # License
