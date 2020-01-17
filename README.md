@@ -4,7 +4,7 @@
 Portfolio of my data analytics assignments completed by me for Academic purposes.
 ## Contents
 ### Descriptive Analytics & Visualization
- 1. [Analysis of mobile phone usage in Australia](): 
+ 1. [Analysis of mobile phone usage in Australia](Descriptive Analytics & Visualization(MIS 771)/A1_218200234.pdf): 
 + Applied Confidence interval, hypothesis testing
 + Manipulate and summarize data, appraise statistical output, interpret
 +	Perform descriptive statistics (summary measures, plots & suitable charts, or graphics, perform confidence interval, hypothesis test
