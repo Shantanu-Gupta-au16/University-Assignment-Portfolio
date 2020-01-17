@@ -91,6 +91,10 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 ### Supply Chain Management and Logistics
 1. [British Petroleum](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Supply%20Chain%20Management%20and%20Logistics(MIS784)/Gupta_MIS713_T2_2019_assign.pdf)
 
+### Statistical Data Analysis
+1. [Assignment-1](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Statistical%20Data%20Analysis%20(SIT%20741)/218200234_Assignment1.pdf):
+
+2. [Assignment-2](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Statistical%20Data%20Analysis%20(SIT%20741)/218200234_Assignment2.pdf):
   
 # License
 
