@@ -69,7 +69,7 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 ### Database and Information retreival
 
 ### Value of Information
- [IT Portfolio of Gap Inc.]():
+ [IT Portfolio of Gap Inc.](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Value%20of%20Information(MIS782)/Final%20Project.pdf):
 + Make IT portfolio and business case of gap inc.
 + Identify it assets and business value,returns,risks
 + Apply RBV and competive advantage over the firm
@@ -77,12 +77,12 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 ### Modern Data Science
 1. [Wine Review Analysis]():
 
-2. [Banking-Marketing-Campaign-with-Spark]():
+2. [Banking-Marketing-Campaign-with-Spark](https://github.com/Shantanu9326/Banking-Marketing-Campaign-with-Spark/blob/master/Banking_Marketing_Campaign_with_pySpark.ipynb):
 
 ### Marketing Analytics
-1. [Price and Promotion Analytics of Carman's Kitchen]():
+1. [Price and Promotion Analytics of Carman's Kitchen](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Marketing%20Analytics(MIS713)/MIS784_A1_218200234.pdf):
 
-2. [Conjoint Analysis of Sony Curved Telivision]():
+2. [Conjoint Analysis of Sony Curved Telivision](https://github.com/Shantanu9326/University-Assignment-Portfolio/blob/master/Marketing%20Analytics(MIS713)/MIS784_A2_218200234.docx):
 
 ### Supply Chain Management and Logistics
 
