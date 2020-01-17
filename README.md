@@ -17,7 +17,7 @@ Portfolio of my data analytics assignments completed by me for Academic purposes
 + Performed basic statistic operations, outlier analysis tests, linear regression, and logistic regression in Excel. 
 + Developed proposals on where to put effort and money to improve perceptions of product quality and brand image so as to increase the probability of being recommended.
 
-3. [Sony Dashboard]():
+3. [Sony Dashboard](https://wp.deakin.edu.au/deakinsso_460041403_guptasha_submission_1/):
 + Created interactive dashboard using Sony Dataset for a upcoming online marketing campaign. 
 + Insightful data-driven decision making with website 
 + Using Dynamic filters for performing actions in the graph
